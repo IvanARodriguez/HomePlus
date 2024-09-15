@@ -32,7 +32,7 @@ func main() {
 	app.Use(csrf.New())
 
 	app.Get("/test", func(ctx *fiber.Ctx) error {
-		return ctx.Status(200).JSON(fiber.Map{"message": "test endpoint is working"})
+		return ctx.Status(200).JSON(fiber.Map{"message": "Test"})
 	})
 
 	portString := os.Getenv("PORT")

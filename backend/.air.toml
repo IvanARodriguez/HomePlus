@@ -1,0 +1,17 @@
+[build]
+cmd = "go build -o main main.go"
+bin = "main"
+dir = "."
+poll = true
+exclude_dir = ["vendor"]
+include_ext = ["go"]
+run_after_build = "chmod +x main"
+
+[color]
+build = "yellow"
+main = "magenta"
+runner = "green"
+watcher = "cyan"
+
+[log]
+level = "debug"

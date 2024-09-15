@@ -1,6 +1,7 @@
 services:
   client:
-    image: client
+    image: homeplus.client
+    container_name: homeplus.client
     build:
       context: client
       dockerfile: ./Dockerfile
@@ -12,3 +13,22 @@ services:
     volumes:
       - ./client:/app
       - /app/node_modules
+    depends_on:
+      - backend
+
+  backend:
+    image: homeplus.backend
+    container_name: homeplus.backend
+    build:
+      context: backend
+      dockerfile: ./Dockerfile
+    volumes:
+      - ./backend:/app  # Mount backend source code to /app in the container
+      - /app/tmp  # Bind the tmp folder for Air to store binaries
+    ports:
+      - 8000:8000
+    networks:
+      - homeplus
+    command: air -c .air.toml  # Use the air command to start the app
+networks:
+  homeplus:
